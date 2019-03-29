@@ -1,7 +1,7 @@
 const getSpecalization = (categoryId) => {
     const sqlObject = {
-      text: 'select id, name from specialization where field_id = $1',
-      values: [categoryId],
+      text: 'select * from specialization where field_id = $1',
+      valueText: [categoryId],
     };
     return connect.query(sqlObject);
   };

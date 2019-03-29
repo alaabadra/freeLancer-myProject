@@ -1,11 +1,12 @@
+const connection = require('../database/connection.js');
 const getProposal = (id) => {
-    const sqlObject = {
-    text:'select proposal.id, users.photo_url , users.firstname , users.lastname,'
-    + 'specialization.name ,proposal.title,users.email, users.mobile_number, proposal.description '
-    + 'from proposal join users ON users.id = proposal.user_id join specialization ON '
-    + 'specialization.id = users.specalization_id  where proposal.id =$1',
-     valueText:[id]
-    }
-    return connect.query(sqlObject);
+  const sqlObject ={
+    text:`
+    SELECT proposal.title,proposal.description, users.first_name, users.last_name, users.email, users.freelancer_url, users.no_mobile, 
+    specalization.name FROM  proposal INNER JOIN users ON users.id = proposal.user_id 
+    INNER JOIN specialization ON specialization.id =  proposal.specalization_id WHERE proposal.id = $1 `,
+    valueText = [id]
+  }
+    return connection.query(sqlObject);
   };
   module.exports = getProposal;
