@@ -30,4 +30,17 @@ signup_btn.addEventListener('click',event=>{
             return message.textContent('signUp is successfully');
         }
     });
+  const DataForLogin = {
+        email:emailInput.value,
+        password:passwordInput.value,
+    }
+    fetch('/login',{
+        method:'POST',
+        body: JSON.parse(DataForLogin)
+    },(err,result)=>{
+        if(err) new TypeError(err);
+        else{
+            return message.textContent('login is successfully');
+        }
+    });
 })
